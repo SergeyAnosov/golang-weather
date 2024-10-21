@@ -4,12 +4,13 @@ import (
 	"flag"
 	"fmt"
 	"golang/weather/geo"
+	"golang/weather/weather"
 )
 
 func main() {
 	fmt.Println("Новый проект")
 	city := flag.String("city", "", "Город пользователя")
-	// format := flag.Int("format", 1, "Формат вывода погоды")
+	format := flag.Int("format", 1, "Формат вывода погоды")
 
 	flag.Parse()
 
@@ -19,4 +20,6 @@ func main() {
 		fmt.Println(err.Error())
 	}
 	fmt.Println(geoData)
+	weatherData := weather.GetWeather(*geoData, *format)
+	fmt.Println(weatherData)
 }
